@@ -161,7 +161,7 @@ function EnemyHealthBar:init(panel, unit)
 	if unit:character_damage().add_listener then
 		unit:character_damage():add_listener(self._key, table.map_keys(events), callback(self, self, "update_hp"))
 	end
-	if unit:base().add_destroy_listener then
+	if unit:base() and unit:base().add_destroy_listener then
 		unit:base():add_destroy_listener(self._key, callback(self, self, "destroy"))
 	end
 	managers.hud:add_updator(self._key, callback(self, self, "update"))
