@@ -245,8 +245,15 @@ function EnemyHealthBar:update_hp()
 	if not self:alive() then
 		return
 	end
-
-	local ratio = self._unit:character_damage():health_ratio()
+	
+	
+	local ratio 
+	if self._unit:character_damage().health_ratio then
+		ratio = self._unit:character_damage():health_ratio()
+	else
+		--VehicleDamage ext does not have health_ratio()
+		ratio = self._unit:character_damage()._health / self._unit:character_damage()._current_max_health
+	end
 	self._hp_center:stop()
 	self._hp_center:animate(callback(self, self, "_anim_hp_change"), self._hp_left, self._hp_right, self._health_ratio or 0, ratio)
 
