@@ -44,7 +44,7 @@ Hooks:PostHook(HUDManager, "update", "update_enemy_health_bars", function (self,
 		self._unit_healthbar = nil
 	end
 
-	if not self._unit_healthbar and unit and unit:character_damage() and not unit:character_damage()._dead and not self._unit:vehicle_driving() then
+	if not self._unit_healthbar and unit and unit:character_damage() and not unit:character_damage()._dead and not unit:vehicle_driving() then
 		self._unit_healthbar = unit:unit_data()._healthbar or EnemyHealthBar:new(self._healthbar_panel, unit)
 		self._unit_healthbar:show()
 	end
